@@ -1,24 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="10dp"
-    tools:context=".MainActivity" >
-
-    <Button
-        android:id="@+id/btnEWAN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="ClickedEpal"
-        android:text="Okay"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="10dp"
-        tools:layout_editor_absoluteY="10dp" />
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <Button
+            android:id="@+id/btnJournal"
+            android:layout_width="342dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="16dp"
+            android:onClick="JournalClicked"
+            android:text="Journal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.507"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnChart" />
+
+        <Button
+            android:id="@+id/btnRate"
+            android:layout_width="342dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="176dp"
+            android:onClick="RateClicked"
+            android:text="Rate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnChart"
+            android:layout_width="342dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="16dp"
+            android:text="Chart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.507"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnRate" />
+
+        <Button
+            android:id="@+id/btnStatus"
+            android:layout_width="342dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="16dp"
+            android:text="Status"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.507"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnJournal" />
+
+        <Button
+            android:id="@+id/btnSettings"
+            android:layout_width="342dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="16dp"
+            android:text="Settings"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.507"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnStatus" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
