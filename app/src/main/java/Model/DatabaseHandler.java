@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 
 import java.io.ByteArrayOutputStream;
 
+import Controller.DataController;
+
 public class DatabaseHandler extends SQLiteOpenHelper
 {
 
@@ -19,7 +21,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
     private static int DATABASE_VERSION=1;
 
     private static final String TABLE_NAME = "HowHappyDB";
-    private static String createTableQuery = ("CREATE TABLE "+ TABLE_NAME +"  (ID INTEGER PRIMARY KEY AUTOINCREMENT,RATING DOUBLE,DATE TEXT, JOURNAL TEXT)");
+    private static String createTableQuery = ("CREATE TABLE "+ TABLE_NAME +"  (ID INTEGER PRIMARY KEY AUTOINCREMENT,RATING FLOAT,DATE TEXT, JOURNAL TEXT)");
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null,DATABASE_VERSION );
@@ -53,7 +55,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
 
     }
 
-    public void tryPopulateDB(){
+    public void tryPopulateDB(DataController dataController){
 
         try
         {
@@ -64,9 +66,9 @@ public class DatabaseHandler extends SQLiteOpenHelper
             //object holds the parameter passed by ModelClass
 
             //CODE FOR POPULATING
-            objectContentValues.put("RATING",1.5);
-            objectContentValues.put("DATE","mm/dd/yy");
-            objectContentValues.put("JOURNAL","sample text");
+            objectContentValues.put("RATING",dataController.getRating());
+            objectContentValues.put("DATE",dataController.getDate());
+            objectContentValues.put("JOURNAL","hello world");
 
 
             //Stores data to the table -- imageInfo
@@ -82,7 +84,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
             }
 
         }catch (Exception e){
-            Toast.makeText(context, e.getMessage(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, e.getMessage(),Toast.LENGTH_LONG).show();
         }
 
 
