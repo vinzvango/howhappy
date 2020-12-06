@@ -1,5 +1,7 @@
 package Controller;
 
+import android.database.DatabaseErrorHandler;
+
 public class DataController {
 
     private float Rating;
@@ -11,6 +13,15 @@ public class DataController {
         Rating = rating;
         Date = date;
         Journal = journal;
+    }
+
+    public DataController(float rating, String date) {
+        Rating = rating;
+        Date = date;
+
+    }
+
+    public DataController(DatabaseErrorHandler objectDatabaseHandler) {
     }
 
 

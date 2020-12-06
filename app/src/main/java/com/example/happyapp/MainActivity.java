@@ -46,6 +46,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void chartClicked(View view){
+
+        startActivity(new Intent(getApplicationContext(), PieChartActivity.class));
+
+
+    }
+
 
 
 
