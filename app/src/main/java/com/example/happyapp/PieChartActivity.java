@@ -35,18 +35,19 @@ public class PieChartActivity extends AppCompatActivity {
     try{
 
 
-
+        //pass objectdatabase arraylist to modelclass
         objectModelClassList = objectDatabaseHandler.getChartData();
+        //creates new arraylist with datatype float for all the ratings
         ArrayList<Float> arrListRating = new ArrayList<>();
-
+        //arraylist for the piechart
         ArrayList<PieEntry> visitors = new ArrayList<>();
-
+        //loops thru the modelclass arraylist to pass all the ratings to the created arraylistrating
         for(int i = 0; i < objectModelClassList.size(); i++){
             arrListRating.add(objectModelClassList.get(i).getRating());
         }
-
-
-
+        //loops thru to all the ratings(float)
+        // count all occurence of i, if not zero then multiply occurence to the float to get the final value of the rating
+        //add to the chart the product of occ * i with corresponding  value
             for(float i=0f; i<5.0; i+=0.5){
                 int occ = Collections.frequency(arrListRating,i);
                 if (occ!=0){
@@ -74,24 +75,6 @@ public class PieChartActivity extends AppCompatActivity {
                 }
             }
 
-        //int occurrences = Collections.frequency(objectModelClassList,5.0f);
-
-       //System.out.println("OCCURENCES2 "+ occurrences);
-
-
-
-        //Toast.makeText(this, occurrences, Toast.LENGTH_SHORT).show();
-
-
-
-
-        //-------Adds the items to the chart...
-        //visitors.add(new PieEntry(arrListRating.get(0)));
-
-        //visitors.add(new PieEntry(objectModelClassList.get(0).getRating(),objectModelClassList.get(0).getDate()));
-        //visitors.add(new PieEntry(objectModelClassList.get(1).getRating(),objectModelClassList.get(1).getDate()));
-       // visitors.add(new PieEntry(objectModelClassList.get(2).getRating(),objectModelClassList.get(3).getDate()));
-        //visitors.add(new PieEntry(objectModelClassList.get(4).getRating(),objectModelClassList.get(4).getDate()));
 
         PieDataSet pieDataSet = new PieDataSet(visitors,"Mood");
         pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);

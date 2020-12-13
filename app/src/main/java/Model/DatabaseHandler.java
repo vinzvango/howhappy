@@ -101,7 +101,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             ArrayList<DataController> objectModelClassList = new ArrayList<>();
             SQLiteDatabase objectSQLiteDatabase = this.getWritableDatabase();
 
-            Cursor objectCursor = objectSQLiteDatabase.rawQuery("select * from "+TABLE_NAME+" WHERE DATE = '08-Dec-2020' " ,null);
+            Cursor objectCursor = objectSQLiteDatabase.rawQuery("select * from "+TABLE_NAME,null);
             //Cursor objectCursor = objectSQLiteDatabase.rawQuery("select * from "+TABLE_NAME+" WHERE DATE = '08-Dec-2020' " ,null);
             if(objectCursor.getCount() != 0 ) {
                 while (objectCursor.moveToNext()) {
