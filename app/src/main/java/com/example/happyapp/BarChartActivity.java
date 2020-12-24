@@ -22,21 +22,14 @@ import static com.github.mikephil.charting.utils.ColorTemplate.*;
 public class BarChartActivity extends AppCompatActivity {
 
     private DatabaseHandler objectDatabaseHandler;
-    private ArrListAdapter objectArrListAdapter;
+
     private BarDataController objectBarDataController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bar_chart);
 
-        //objectArrListAdapter = new ArrListAdapter(objectBarDataController.getChartData());
-
         try{
-            //creating arraylist of ArrListAdapter with databasehandler arraylist
-
-
-
-
 
 
             ArrayList<DataController> objectModelClassList = new ArrayList<>();

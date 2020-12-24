@@ -20,16 +20,6 @@ public class MainActivity extends AppCompatActivity {
         Button btnRate = findViewById(R.id.btnRate);
         Button btnJournal = findViewById(R.id.btnJournal);
 
-
-
-
-
-
-
-
-
-
-
     }
 
     public void RateClicked(View view){
@@ -46,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void chartClicked(View view){
+    public void PieChartClicked(View view){
 
         startActivity(new Intent(getApplicationContext(), PieChartActivity.class));
 

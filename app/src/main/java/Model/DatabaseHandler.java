@@ -24,13 +24,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static int DATABASE_VERSION = 1;
 
     private static final String TABLE_NAME = "HowHappyDB";
+    //CREATE TABLE QUERY
     private static String createTableQuery = ("CREATE TABLE " + TABLE_NAME + "  (ID INTEGER PRIMARY KEY AUTOINCREMENT,RATING FLOAT,DATE TEXT, JOURNAL TEXT)");
+
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
-
-
     }
 
     @Override
@@ -53,17 +53,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-    public void getTableName() {
-        Toast.makeText(context, createTableQuery, Toast.LENGTH_LONG).show();
-
-    }
-
-    public void tryPopulateDB(DataController dataController) {
+    public void populateDB(DataController dataController) {
 
         try {
 
             SQLiteDatabase objectSQLiteDatabase = this.getWritableDatabase();
-
             ContentValues objectContentValues = new ContentValues();
             //object holds the parameter passed by ModelClass
 
@@ -88,8 +82,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         } catch (Exception e) {
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
         }
-
-
     }
 
     public ArrayList<DataController> getChartData() {

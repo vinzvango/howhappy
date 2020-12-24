@@ -21,19 +21,19 @@ import Controller.DataController;
 import Model.DatabaseHandler;
 
 public class PieChartActivity extends AppCompatActivity {
+    /*- PIE CHART JAVA ACTIVITY
+     */
+
     DatabaseHandler objectDatabaseHandler = new DatabaseHandler(this);
-    ArrListAdapter objectArrListAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pie_chart);
-
         PieChart pieChart = findViewById(R.id.pieChart);
-
         ArrayList<DataController> objectModelClassList = new ArrayList<>();
 
     try{
-
 
         //pass objectdatabase arraylist to modelclass
         objectModelClassList = objectDatabaseHandler.getChartData();
@@ -41,7 +41,7 @@ public class PieChartActivity extends AppCompatActivity {
         ArrayList<Float> arrListRating = new ArrayList<>();
         //arraylist for the piechart
         ArrayList<PieEntry> visitors = new ArrayList<>();
-        //loops thru the modelclass arraylist to pass all the ratings to the created arraylistrating
+        //loops thru the modelclass arraylist to pass all the ratings to the created arrayListRating
         for(int i = 0; i < objectModelClassList.size(); i++){
             arrListRating.add(objectModelClassList.get(i).getRating());
         }
@@ -51,7 +51,9 @@ public class PieChartActivity extends AppCompatActivity {
             for(float i=0f; i<5.0; i+=0.5){
                 int occ = Collections.frequency(arrListRating,i);
                 if (occ!=0){
+                    //multiplies occ and index(e.g 3.5) to get the total value
                     float temp = occ *i;
+                    //gives labels to every result
                     if (i == 1.0f) {
                         visitors.add(new PieEntry(temp, "Depressed"));
                     } else if (i == 1.5f) {
@@ -75,7 +77,7 @@ public class PieChartActivity extends AppCompatActivity {
                 }
             }
 
-
+        //--OTHER PIE CHART COFIGS--//
         PieDataSet pieDataSet = new PieDataSet(visitors,"Mood");
         pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         pieDataSet.setValueTextColor(Color.BLACK);

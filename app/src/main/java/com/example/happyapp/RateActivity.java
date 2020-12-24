@@ -46,7 +46,7 @@ public class RateActivity extends AppCompatActivity {
 
         System.out.println("RATING"+ ratingBar.getRating());
         try {
-            objectDatabaseHandler.tryPopulateDB(new DataController(ratingBar.getRating(),"08-Dec-2020","hello world"));
+            objectDatabaseHandler.populateDB(new DataController(ratingBar.getRating(),"08-Dec-2020","hello world"));
             //objectDatabaseHandler.tryPopulateDB(new DataController(ratingBar.getRating(),formattedDate,"hello world"));
         }
         catch (Exception e){
