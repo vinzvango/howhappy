@@ -1,11 +1,14 @@
 package com.example.happyapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.util.Pair;
 
 import android.content.Context;
 import android.database.DatabaseErrorHandler;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -13,9 +16,12 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.material.datepicker.MaterialDatePicker;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.TimeZone;
 
 import Controller.DataController;
 import Model.DatabaseHandler;
@@ -25,13 +31,25 @@ public class PieChartActivity extends AppCompatActivity {
      */
 
     DatabaseHandler objectDatabaseHandler = new DatabaseHandler(this);
-
+    private Button btnDatePickerShower;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pie_chart);
         PieChart pieChart = findViewById(R.id.pieChart);
         ArrayList<DataController> objectModelClassList = new ArrayList<>();
+
+        //--date picker initialization and setup
+        btnDatePickerShower = findViewById(R.id.btnDatePickerShower);
+        MaterialDatePicker.Builder<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker();
+        builder.setTitleText("SELECT A DATE");
+        final MaterialDatePicker materialDatePicker = builder.build();
+        btnDatePickerShower.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                materialDatePicker.show(getSupportFragmentManager(),materialDatePicker.toString());
+            }
+        });
 
     try{
 
@@ -94,5 +112,15 @@ public class PieChartActivity extends AppCompatActivity {
         Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
     }
+
+
+        }
+
+
+
+
+
+
+
+
     }
-}

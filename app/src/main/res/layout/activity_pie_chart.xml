@@ -8,9 +8,19 @@
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/pieChart"
-        android:layout_width="363dp"
-        android:layout_height="773dp"
+        android:layout_width="356dp"
+        android:layout_height="549dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDatePickerShower" />
+
+    <Button
+        android:id="@+id/btnDatePickerShower"
+        android:layout_width="142dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="32dp"
+        android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
