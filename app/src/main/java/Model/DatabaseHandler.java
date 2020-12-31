@@ -84,22 +84,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    public ArrayList<DataController> getChartData() {
+    public ArrayList<DataController> getChartData(String startDate, String endDate) {
 
         //--ArrayList which gets the data from the DB by date--//
         try {
             String queryString = "select * from "+TABLE_NAME+" WHERE DATE = ";
-            String queryDateString;
+            String queryDateString = "select * from "+TABLE_NAME+" WHERE DATE >='"+ startDate +"' AND DATE <='"+endDate+"'";
             ArrayList<DataController> objectModelClassList = new ArrayList<>();
             SQLiteDatabase objectSQLiteDatabase = this.getWritableDatabase();
 
-            Cursor objectCursor = objectSQLiteDatabase.rawQuery("select * from "+TABLE_NAME,null);
-            //Cursor objectCursor = objectSQLiteDatabase.rawQuery("select * from "+TABLE_NAME+" WHERE DATE = '08-Dec-2020' " ,null);
+
+           // Cursor objectCursor = objectSQLiteDatabase.rawQuery("select * from "+TABLE_NAME,null);
+            Cursor objectCursor = objectSQLiteDatabase.rawQuery(queryDateString,null);
             if(objectCursor.getCount() != 0 ) {
                 while (objectCursor.moveToNext()) {
                     //loops until the end of the record and add item to the arraylist
                     objectModelClassList.add(new DataController(objectCursor.getFloat(1),objectCursor.getString(2)));
-                    Toast.makeText(context, "DB NOT ZERO", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, "DB NOT ZERO", Toast.LENGTH_SHORT).show();
                 }
                 return objectModelClassList;
             }else
