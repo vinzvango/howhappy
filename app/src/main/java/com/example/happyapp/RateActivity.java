@@ -38,19 +38,36 @@ public class RateActivity extends AppCompatActivity {
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
         formattedDate = df.format(c).toString();
         lblDate.setText("Today is "+formattedDate);
+        objectDatabaseHandler = new DatabaseHandler(this);
+        CompareDateToday();
 
     }
 
-    public  void clickedbtnRateOkay(View view){
-        objectDatabaseHandler = new DatabaseHandler(this);
+    public  void ClickedBtnRateOkay(View view){
 
         System.out.println("RATING"+ ratingBar.getRating());
         try {
-            objectDatabaseHandler.populateDB(new DataController(ratingBar.getRating(),"08-Dec-2020","hello world"));
+            objectDatabaseHandler.populateDB(new DataController(ratingBar.getRating(),formattedDate,"hello world"));
             //objectDatabaseHandler.tryPopulateDB(new DataController(ratingBar.getRating(),formattedDate,"hello world"));
         }
         catch (Exception e){
             Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
+        }
+
+
+    }
+    public Boolean CompareDateToday(){
+        Boolean isDateTodayExists;
+
+        isDateTodayExists = objectDatabaseHandler.IsDateTodayExists(formattedDate);
+
+        if(isDateTodayExists){
+            Toast.makeText(this,"DATE EXISTS",Toast.LENGTH_LONG).show();
+            return true;
+        }
+        else{
+            Toast.makeText(this,"DATE Doesnt EXISTS, continue with the rating",Toast.LENGTH_LONG).show();
+            return false;
         }
 
 

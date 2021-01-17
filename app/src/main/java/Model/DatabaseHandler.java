@@ -112,4 +112,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return null;
     }
+
+
+
+
+    public Boolean IsDateTodayExists(String date) {
+        String queryDateString = "SELECT * FROM " + TABLE_NAME + " WHERE DATE = '" + date + "'";
+        SQLiteDatabase objectSQLiteDatabase = this.getWritableDatabase();
+        Cursor objectCursor = objectSQLiteDatabase.rawQuery(queryDateString, null);
+
+        if (objectCursor.getCount() == 0) {
+            return false;
+        } else
+            return true;
+
+    }
+
+
+
 }
+
+
