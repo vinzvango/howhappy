@@ -62,11 +62,15 @@ public class RateActivity extends AppCompatActivity {
         isDateTodayExists = objectDatabaseHandler.IsDateTodayExists(formattedDate);
 
         if(isDateTodayExists){
-            Toast.makeText(this,"DATE EXISTS",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"You Have already rated today! See you tomorrow",Toast.LENGTH_LONG).show();
+            //Toast.makeText(this,"RATING MO" + objectDatabaseHandler.DbRating(formattedDate),Toast.LENGTH_LONG).show();
+            ratingBar.setRating(objectDatabaseHandler.DbRating(formattedDate));
+            ratingBar.setEnabled(false);
+            btnRateOkay.setEnabled(false);
             return true;
         }
         else{
-            Toast.makeText(this,"DATE Doesnt EXISTS, continue with the rating",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Date Doesnt EXISTS, continue with the rating",Toast.LENGTH_LONG).show();
             return false;
         }
 

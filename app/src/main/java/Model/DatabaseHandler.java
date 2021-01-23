@@ -22,6 +22,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     Context context;
     private static String DATABASE_NAME = "mydb.db";
     private static int DATABASE_VERSION = 1;
+    private float dbRating;
 
     private static final String TABLE_NAME = "HowHappyDB";
     //CREATE TABLE QUERY
@@ -52,7 +53,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
-
+ 
     public void populateDB(DataController dataController) {
 
         try {
@@ -64,7 +65,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             //CODE FOR POPULATING
             objectContentValues.put("RATING", dataController.getRating());
             objectContentValues.put("DATE", dataController.getDate());
-            objectContentValues.put("JOURNAL", "hello world");
+            //objectContentValues.put("JOURNAL", "hello world");
 
 
             //Stores data to the table -- imageInfo
@@ -83,6 +84,42 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
+
+    public void InsertJournalToDb(DataController dataController){
+        try {
+
+            SQLiteDatabase objectSQLiteDatabase = this.getWritableDatabase();
+            ContentValues objectContentValues = new ContentValues();
+            //object holds the parameter passed by ModelClass
+
+            //CODE FOR POPULATING
+            objectContentValues.put("RATING", dataController.getRating());
+            objectContentValues.put("DATE", dataController.getDate());
+            //objectContentValues.put("JOURNAL", "hello world");
+
+
+            //Stores data to the table -- imageInfo
+            long checkIfQueryRuns = objectSQLiteDatabase.insert(TABLE_NAME, null, objectContentValues);
+            if (checkIfQueryRuns != 1) {
+                Toast.makeText(context, "SAVED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
+                //--NOTE: can put some good window for sucessfully saving
+                //objectSQLiteDatabase.close();
+
+            } else {
+                Toast.makeText(context, "SAVING UNSUCCESSFUL", Toast.LENGTH_SHORT).show();
+                //--NOTE: can put some good window for unsucessfully saving
+            }
+
+        } catch (Exception e) {
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+
+    }
+
+
+
+
 
     public ArrayList<DataController> getChartData(String startDate, String endDate) {
 
@@ -125,6 +162,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             return false;
         } else
             return true;
+
+    }
+    public float DbRating(String date){
+
+        String queryDateString = "SELECT * FROM " + TABLE_NAME + " WHERE DATE = '" + date + "'";
+        SQLiteDatabase objectSQLiteDatabase = this.getWritableDatabase();
+        Cursor objectCursor = objectSQLiteDatabase.rawQuery(queryDateString, null);
+
+
+       objectCursor.moveToFirst();
+
+
+
+        return objectCursor.getFloat(1);
+
+
+
 
     }
 
